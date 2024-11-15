@@ -15,11 +15,19 @@ sales_2021_df = pd.read_csv("Resources/athletic_sales_2021.csv")
 sales_2020_df
 ```
 
+<figure>
+    <img src="images\img1.png">
+</figure>
+
 
 ```python
 # Display the 2021 sales DataFrame
 sales_2021_df
 ```
+
+<figure>
+    <img src="images\img2.png">
+</figure>
 
 ### Check the data types of each DataFrame
 
@@ -28,10 +36,18 @@ sales_2021_df
 sales_2020_df.info()
 ```
 
+<figure>
+    <img src="images\img3.png">
+</figure>
+
 ```python
 # Check the 2021 sales data types.
 sales_2021_df.info()
 ```
+
+<figure>
+    <img src="images\img4.png">
+</figure>
 
 ### Combine the sales data by rows.
 
@@ -41,15 +57,27 @@ sales_20_21_df = pd.concat([sales_2020_df, sales_2021_df], ignore_index=True).so
 sales_20_21_df
 ```
 
+<figure>
+    <img src="images\img5.png">
+</figure>
+
 ```python
 # Check if any values are null.
 sales_20_21_df.isna().sum()
 ```
 
+<figure>
+    <img src="images\img6.png">
+</figure>
+
 ```python
 # Check the data type of each column
 sales_20_21_df.info()
 ```
+
+<figure>
+    <img src="images\img7.png">
+</figure>
 
 ```python
 # Convert the "invoice_date" to a datetime datatype
@@ -57,10 +85,18 @@ sales_20_21_df["invoice_date"] = sales_20_21_df["invoice_date"].astype("datetime
 sales_20_21_df
 ```
 
+<figure>
+    <img src="images\img8.png">
+</figure>
+
 ```python
 # Confirm that the "invoice_date" data type has been changed.
 sales_20_21_df.info()
 ```
+
+<figure>
+    <img src="images\img9.png">
+</figure>
 
 ## 2. Determine which Region Sold the Most Products
 
@@ -82,6 +118,10 @@ most_prd_sold = (
 most_prd_sold.head()
 ```
 
+<figure>
+    <img src="images\img10.png">
+</figure>
+
 ### Using pivot_table
 
 
@@ -101,6 +141,10 @@ pivot_total_sales = pd.pivot_table(
 # Show the top 5 results.
 pivot_total_sales.rename(columns={"units_sold": "Total_Products_Sold"}).head(5)
 ```
+
+<figure>
+    <img src="images\img11.png">
+</figure>
 
 ## 3. Determine which Region had the Most Sales
 
@@ -123,6 +167,10 @@ total_sales = (
 total_sales.head()
 ```
 
+<figure>
+    <img src="images\img12.png">
+</figure>
+
 ### Using pivot_table
 
 
@@ -142,10 +190,13 @@ pivot_total_sales = pd.pivot_table(
 pivot_total_sales.rename(columns={"total_sales": "Total_Sales"}).head(5)    
 ```
 
+<figure>
+    <img src="images\img12.png">
+</figure>
+
 ## 4. Determine which Retailer had the Most Sales
 
 ### Using groupby
-
 
 ```python
 # Show the total sales for the products sold for each retailer, region, state, and city.
@@ -163,6 +214,10 @@ total_retailer_sales = (
 # Show the top 5 results.
 total_retailer_sales.head()
 ```
+
+<figure>
+    <img src="images\img13.png">
+</figure>
 
 ### Using pivot_table
 
@@ -184,6 +239,11 @@ pivot_total_sales = pd.pivot_table(
 pivot_total_sales.rename(columns={"total_sales": "Total_Sales"}).head(5)
 ```
 
+<figure>
+    <img src="images\img13.png">
+</figure>
+
+
 ## 5. Determine which Retailer Sold the Most Women's Athletic Footwear
 
 
@@ -198,6 +258,10 @@ womans_athletic_fw_sales = sales_20_21_df.groupby("product").get_group(
 )
 womans_athletic_fw_sales
 ```
+
+<figure>
+    <img src="images\img14.png">
+</figure>
 
 ### Using groupby
 
@@ -222,6 +286,10 @@ womans_athletic_sold = (
 womans_athletic_sold.head()
 ```
 
+<figure>
+    <img src="images\img15.png">
+</figure>
+
 ### Using pivot_table
 
 
@@ -242,8 +310,14 @@ pivot_woman_units_sold = pd.pivot_table(
 
 
 # Show the top 5 results.
-pivot_woman_units_sold.head(5)
+pivot_woman_units_sold.rename(
+    columns={"units_sold": "Womens_Footwear_Units_Sold"}
+).head(5)
 ```
+
+<figure>
+    <img src="images\img15.png">
+</figure>
 
 ## 6. Determine the Day with the Most Women's Athletic Footwear Sales
 
@@ -266,6 +340,10 @@ pivot_tbl = (
 pivot_tbl.head(10)
 ```
 
+<figure>
+    <img src="images\img16.png">
+</figure>
+
 
 ```python
 # Resample the pivot table into daily bins, and get the total sales for each day.
@@ -274,6 +352,10 @@ resample_tot_sales = pivot_tbl.resample("d").sum()
 # Sort the resampled pivot table in descending order on "Total Sales".
 resample_tot_sales.sort_values("Total_Sales", ascending=False).head(10)
 ```
+
+<figure>
+    <img src="images\img17.png">
+</figure>
 
 ## 7. Determine the Week with the Most Women's Athletic Footwear Sales
 
@@ -286,3 +368,7 @@ resample_tot_sales = pivot_tbl.resample("W").sum()
 # Sort the resampled pivot table in descending order on "Total Sales".
 resample_tot_sales.sort_values("Total_Sales", ascending=False).head(10)
 ```
+
+<figure>
+    <img src="images\img18.png">
+</figure>
